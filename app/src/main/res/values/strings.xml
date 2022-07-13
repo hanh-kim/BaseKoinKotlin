@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BaseKoinKotlin</string>
+    <string name="preference_name">base_koin_kotlin</string>
+</resources>
