@@ -1,4 +1,4 @@
-package com.dmm.ptown.utils
+package com.hanhpk.basekoinkotlin.utils
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog

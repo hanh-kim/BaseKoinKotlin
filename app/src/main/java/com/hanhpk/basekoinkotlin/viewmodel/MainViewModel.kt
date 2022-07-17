@@ -3,25 +3,33 @@ package com.hanhpk.basekoinkotlin.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.*
-import com.hanhpk.basekoinkotlin.api.responses.UserPostResponse
+import com.hanhpk.basekoinkotlin.api.requests.GeneralPagingRequest
+import com.hanhpk.basekoinkotlin.api.responses.PhotoResponse
 import com.hanhpk.basekoinkotlin.base.BaseViewModel
-import com.hanhpk.basekoinkotlin.interactors.handlerCase.GetUserPost
-import com.hanhpk.basekoinkotlin.interactors.handlerCase.GetUserPostPaging
-import com.hanhpk.basekoinkotlin.pagingsources.UserPostPagingSource
+import com.hanhpk.basekoinkotlin.interactors.handlerCase.GetPhotoPaging
+import com.hanhpk.basekoinkotlin.pagingsources.PhotoPagingSource
 import com.hanhpk.basekoinkotlin.utils.Constants
 
 class MainViewModel(
     private val userId: Int,
-    private val getUserPostCase: GetUserPost,
-    private val getUserPostPagingCase: GetUserPostPaging,
+    private val getUserPostPagingCase: GetPhotoPaging,
 ) : BaseViewModel() {
 
-    private val _userPostResponse: MutableLiveData<List<UserPostResponse>> = MutableLiveData()
-    val userPostLiveData: LiveData<List<UserPostResponse>>
-        get() = _userPostResponse
+    private val _photoResponse: MutableLiveData<PhotoResponse> = MutableLiveData()
+    val photoLiveData: LiveData<PhotoResponse>
+        get() = _photoResponse
+    private val _totalCount: MutableLiveData<Int> = MutableLiveData()
+    val totalCount: LiveData<Int>
+        get() = _totalCount
 
-    fun getUserPost(params: Int) {
-        getUserPostCase(params = params) {
+    init {
+        getUserPostPagingCase.onTotalCount ={
+            _totalCount.value = it
+        }
+    }
+
+    fun getPhotos(page: Int=0) {
+        getUserPostPagingCase(params = GeneralPagingRequest(Constants.DEFAULT_PAGING_SIZE,page)) {
             it.fold(
                 ::handleFailure,
                 ::handleDataResponse
@@ -29,16 +37,16 @@ class MainViewModel(
         }
     }
 
-    private fun handleDataResponse(respone: List<UserPostResponse>) {
-        _userPostResponse.value = respone
+    private fun handleDataResponse(respone: PhotoResponse) {
+        _photoResponse.value = respone
     }
 
-    val userPostPaging = Pager(
+    val photoPaging = Pager(
         PagingConfig(
             pageSize = Constants.DEFAULT_PAGING_SIZE,
             initialLoadSize = Constants.DEFAULT_PAGING_LIST_INITIAL_PAGE_LOAD_SIZE
         )
     ){
-        UserPostPagingSource(getUserPostPagingCase)
+        PhotoPagingSource(getUserPostPagingCase)
     }.liveData.cachedIn(this)
 }

@@ -15,9 +15,9 @@ import com.hanhpk.basekoinkotlin.R
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
-    private var _binding: T? = null
+    lateinit var _binding: T
 
-    val binding = _binding!!
+    val binding get() =  _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,

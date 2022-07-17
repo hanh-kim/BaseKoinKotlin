@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="HeaderView">
+        <attr name="leftDrawable" format="integer" />
+        <attr name="leftTitle" format="string" />
+        <attr name="rightDrawable" format="integer" />
+        <attr name="rightTitle" format="string" />
+        <attr name="title" format="string" />
+        <attr name="action" format="string" />
+        <attr name="fullScreen" format="boolean" />
+        <attr name="title_style" format="reference" />
+        <attr name="leftTitle_style" format="reference" />
+        <attr name="rightTitle_style" format="reference" />
+        <attr name="search_view_click" format="boolean" />
+        <attr name="title_marquee" format="boolean" />
+        <attr name="view_margin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomSearchView">
+        <attr name="search_view_background" format="integer" />
+        <attr name="search_view_hint" format="string" />
+        <attr name="search_view_padding" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="SegmentedControlView">
+        <attr name="segment_tab_padding_vertical" format="dimension" />
+    </declare-styleable>
+    <style name="FocusSegmentTab">
+        <item name="android:background">@color/brand_orange_01</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:fontWeight">700</item>
+    </style>
+
+    <style name="UnFocusSegmentTab">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/brand_orange_01</item>
+        <item name="android:textSize">12dp</item>
+        <item name="lineHeight">12dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:fontWeight">400</item>
+    </style>
+
+    <style name="DisableSegmentTab">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/base_gray_01</item>
+        <item name="android:paddingVertical">8dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">11dp</item>
+        <item name="autoSizeMaxTextSize">12dp</item>
+    </style>
+
+
+
+</resources>

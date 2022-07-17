@@ -4,7 +4,7 @@
     package="com.hanhpk.basekoinkotlin">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".AndroidApplication"
@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseKoinKotlin"
-        tools:targetApi="31">
+        tools:targetApi="32">
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true">

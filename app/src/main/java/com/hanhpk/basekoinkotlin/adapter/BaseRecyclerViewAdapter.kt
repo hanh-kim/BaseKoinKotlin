@@ -1,4 +1,4 @@
-package com.dmm.ptown.views.adapter
+package com.hanhpk.basekoinkotlin.adapter
 
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.dmm.ptown.models.BaseItem
-import com.dmm.ptown.BR
-import com.dmm.ptown.utils.onAvoidDoubleClick
+import com.hanhpk.basekoinkotlin.BR
+import com.hanhpk.basekoinkotlin.base.BaseItem
+import com.hanhpk.basekoinkotlin.extensions.onAvoidDoubleClick
 
 open class BaseRecyclerViewAdapter<T> :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

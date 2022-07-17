@@ -23,12 +23,11 @@ abstract class BaseRepository {
                     }
                 }
                 else -> {
-                    // TODO(仕様が決まり次第、ステータスコードによる分岐を記述)
                     Result.Error(Failure.ServerError)
                 }
             }
         } catch (exception: Throwable) {
-            Log.e("TAG", exception.message.toString())
+            Log.e("hanhpkkkk", exception.message.toString())
             Result.Error(Failure.NetworkConnection)
         }
     }

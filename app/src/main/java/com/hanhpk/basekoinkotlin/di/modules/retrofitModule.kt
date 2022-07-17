@@ -6,6 +6,7 @@ import androidx.databinding.ktx.BuildConfig
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.hanhpk.basekoinkotlin.AndroidApplication
 import com.hanhpk.basekoinkotlin.R
 import com.hanhpk.basekoinkotlin.base.BaseItem
 import com.squareup.moshi.FromJson
@@ -30,7 +31,7 @@ import java.util.concurrent.TimeUnit
 private const val CONNECT_TIMEOUT = 60L
 private const val WRITE_TIMEOUT = 60L
 private const val READ_TIMEOUT = 60L
-private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+private const val BASE_URL = "https://www.flickr.com/services/rest/"
 
 val retrofitModule = module {
 
@@ -48,7 +49,7 @@ val retrofitModule = module {
 
     fun provideRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://www.google.com/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(factory))
             .client(client)
             .build()

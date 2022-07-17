@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_search_field"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_search_input"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="5dp"
+            android:fontFamily="@font/roboto_medium"
+            android:hint="@string/hint_search"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/dimen_12dp"
+            android:paddingVertical="5.5dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/text_size_12sp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/view_clear_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_clear_search"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/edt_search_field"
+            app:layout_constraintEnd_toEndOf="@id/edt_search_field"
+            app:layout_constraintTop_toTopOf="@id/edt_search_field" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

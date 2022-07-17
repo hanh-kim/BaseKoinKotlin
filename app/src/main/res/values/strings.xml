@@ -1,4 +1,12 @@
 <resources>
-    <string name="app_name">BaseKoinKotlin</string>
     <string name="preference_name">base_koin_kotlin</string>
+
+    <!-- tab name -->
+    <string name="tab_home">Home</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_notification">Notification</string>
+    <string name="tab_inner_1">Tab 1</string>
+    <string name="tab_inner_2">Tab 2</string>
+
+    <string name="hint_search">Search…</string>
 </resources>

@@ -39,6 +39,8 @@ import com.hanhpk.basekoinkotlin.utils.DateUtils.FORMAT_YEAR_MONTH_DAY_HYPHEN
 import com.google.android.material.appbar.AppBarLayout
 import com.hanhpk.basekoinkotlin.AndroidApplication
 import com.hanhpk.basekoinkotlin.R
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.subjects.PublishSubject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -126,27 +128,27 @@ fun Context.openActivityBySchemeUrlForResult(
     return intent
 }
 
-fun String.convertToDate(formatDate: String,locale : Locale = Locale.JAPAN): Date? {
+fun String.convertToDate(formatDate: String, locale: Locale = Locale.JAPAN): Date? {
     try {
-        return SimpleDateFormat(formatDate,locale).parse(this)
+        return SimpleDateFormat(formatDate, locale).parse(this)
     } catch (ex: Exception) {
     }
     return null
 }
 
-fun Date.convertToString(formatDate: String,locale : Locale = Locale.JAPAN): String {
-    return SimpleDateFormat(formatDate,locale).format(this)
+fun Date.convertToString(formatDate: String, locale: Locale = Locale.JAPAN): String {
+    return SimpleDateFormat(formatDate, locale).format(this)
 }
 
-fun String.convertStringToMillisecond(formatDate: String,locale : Locale = Locale.JAPAN) : Long{
+fun String.convertStringToMillisecond(formatDate: String, locale: Locale = Locale.JAPAN): Long {
     return try {
-        SimpleDateFormat(formatDate,locale).parse(this).time
+        SimpleDateFormat(formatDate, locale).parse(this).time
     } catch (ex: Exception) {
         0
     }
 }
 
-fun Long.convertTimeToString(formatDate: String,locale : Locale = Locale.JAPAN): String {
+fun Long.convertTimeToString(formatDate: String, locale: Locale = Locale.JAPAN): String {
     val date = Date(this)
     val format = SimpleDateFormat(formatDate, locale)
     return format.format(date)
@@ -157,7 +159,7 @@ fun Calendar.calToCode(): String {
     return calendarToFormatApi(DateUtils.FORMAT_YEAR_MONTH_DAY_CODE)
 }
 
-fun View.slideUp(){
+fun View.slideUp() {
     val animation: Animation = AnimationUtils.loadAnimation(
         AndroidApplication.mInstance,
         R.anim.anim_slide_up
@@ -165,7 +167,7 @@ fun View.slideUp(){
     this.animation = animation
 }
 
-fun View.slideDown(){
+fun View.slideDown() {
     val animation: Animation = AnimationUtils.loadAnimation(
         AndroidApplication.mInstance,
         R.anim.anim_slide_down
@@ -173,7 +175,7 @@ fun View.slideDown(){
     this.animation = animation
 }
 
-fun View.slideLeftToRight(){
+fun View.slideLeftToRight() {
     val animation: Animation = AnimationUtils.loadAnimation(
         AndroidApplication.mInstance,
         R.anim.anim_slide_left_to_right
@@ -181,7 +183,7 @@ fun View.slideLeftToRight(){
     this.animation = animation
 }
 
-fun View.slideRightToLeft(){
+fun View.slideRightToLeft() {
     val animation: Animation = AnimationUtils.loadAnimation(
         AndroidApplication.mInstance,
         R.anim.anim_slide_left_to_right
@@ -189,15 +191,15 @@ fun View.slideRightToLeft(){
     this.animation = animation
 }
 
-fun View.gone(){
+fun View.gone() {
     this.visibility = View.GONE
 }
 
-fun View.visible(){
+fun View.visible() {
     this.visibility = View.VISIBLE
 }
 
-fun View.invisible(){
+fun View.invisible() {
     this.visibility = View.INVISIBLE
 }
 
@@ -265,7 +267,7 @@ fun Activity.unlockScreenOrientation() {
     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
 }
 
-fun AppCompatImageView.loadImageUrlWithDefault(url: Any, @DrawableRes placeHolder : Int) {
+fun AppCompatImageView.loadImageUrlWithDefault(url: Any, @DrawableRes placeHolder: Int) {
     Glide.with(this.context)
         .load(url)
         .error(placeHolder)
@@ -384,3 +386,33 @@ fun Date.getDayOfWeekInJp(): String {
 }
 
 
+fun View.onAvoidDoubleClick(delayInMillis: Long = 800L, action: () -> Unit) {
+    setOnClickListener {
+        action()
+        this.isClickable = false
+        this.postDelayed({ isClickable = true }, delayInMillis)
+    }
+}
+
+//EditTextExt
+fun EditText.observableFromView(): Observable<String> {
+    val subject = PublishSubject.create<String>()
+    onTextChanged {
+        subject.onNext(it)
+    }
+    return subject
+}
+
+fun EditText.onTextChanged(onTextChanged: (String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            onTextChanged.invoke(s.toString())
+        }
+
+        override fun afterTextChanged(editable: Editable?) {
+        }
+    })
+}

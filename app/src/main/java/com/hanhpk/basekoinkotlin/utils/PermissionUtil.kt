@@ -1,4 +1,4 @@
-package com.dmm.ptown.utils
+package com.hanhpk.basekoinkotlin.utils
 
 import androidx.core.app.ActivityCompat
 

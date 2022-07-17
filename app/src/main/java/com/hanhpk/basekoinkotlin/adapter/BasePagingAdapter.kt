@@ -1,4 +1,4 @@
-package com.dmm.ptown.views.adapter
+package com.hanhpk.basekoinkotlin.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dmm.ptown.BR
-import com.dmm.ptown.models.BaseItem
-import com.dmm.ptown.utils.onAvoidDoubleClick
+import com.hanhpk.basekoinkotlin.BR
+import com.hanhpk.basekoinkotlin.base.BaseItem
+import com.hanhpk.basekoinkotlin.extensions.onAvoidDoubleClick
 
 class BasePagingAdapter<T : BaseItem> :
     PagingDataAdapter<T, BasePagingAdapter.BaseViewHolder>(object : DiffUtil.ItemCallback<T>() {

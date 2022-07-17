@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.dmm.ptown.views.adapter.BaseRecyclerViewAdapter
+import com.hanhpk.basekoinkotlin.adapter.BaseRecyclerViewAdapter
 import com.hanhpk.basekoinkotlin.api.responses.UserPostResponse
 import com.hanhpk.basekoinkotlin.databinding.ItemUserPostBinding
 

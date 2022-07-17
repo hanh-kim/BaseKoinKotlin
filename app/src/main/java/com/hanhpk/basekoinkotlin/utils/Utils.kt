@@ -1,7 +1,6 @@
-package com.dmm.ptown.utils
+package com.hanhpk.basekoinkotlin.utils
 
 import com.hanhpk.basekoinkotlin.AndroidApplication
-import com.hanhpk.basekoinkotlin.utils.PreferencesUtil
 import com.squareup.moshi.*
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.json.JSONException

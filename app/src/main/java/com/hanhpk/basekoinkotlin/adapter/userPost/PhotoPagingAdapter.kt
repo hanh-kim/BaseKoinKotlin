@@ -1,6 +1,5 @@
 package com.hanhpk.basekoinkotlin.adapter.userPost
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
@@ -8,32 +7,26 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hanhpk.basekoinkotlin.api.responses.UserPostResponse
+import com.hanhpk.basekoinkotlin.databinding.ItemPhotoBinding
 import com.hanhpk.basekoinkotlin.databinding.ItemUserPostBinding
+import com.hanhpk.basekoinkotlin.model.Photo
 
-class UserPostPagingAdapter : PagingDataAdapter<UserPostResponse, UserPostPagingAdapter.ViewHolder>(diffCallBack) {
+class PhotoPagingAdapter : PagingDataAdapter<Photo, PhotoPagingAdapter.ViewHolder>(diffCallBack) {
 
-    interface OnItemClickListener {
-        fun onItemClick(position: Int,item: UserPostResponse)
-    }
-
-    private var listener: OnItemClickListener? = null
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
-    }
+    private var onItemClick: ( Int,Photo)->Unit = {_,_->}
 
     inner class ViewHolder(val binding: ViewDataBinding): RecyclerView.ViewHolder(binding.root){
         init {
             binding.root.setOnClickListener {
                 getItem(bindingAdapterPosition)?.let {
-                    listener?.onItemClick(bindingAdapterPosition,it)
+                    onItemClick(bindingAdapterPosition,it)
                 }
             }
         }
 
-        fun bind(item:UserPostResponse){
+        fun bind(item:Photo){
             when(binding){
-                is ItemUserPostBinding->{
+                is ItemPhotoBinding->{
                     binding.model = item
                     binding.executePendingBindings()
                 }
@@ -43,11 +36,11 @@ class UserPostPagingAdapter : PagingDataAdapter<UserPostResponse, UserPostPaging
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemUserPostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(ItemPhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
-       val item = getItem(position)
+        val item = getItem(position)
         item?.let {
             holder.bind(it)
         }
@@ -56,10 +49,9 @@ class UserPostPagingAdapter : PagingDataAdapter<UserPostResponse, UserPostPaging
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
     }
-
 }
 
-private val diffCallBack = object: DiffUtil.ItemCallback<UserPostResponse>() {
-    override fun areItemsTheSame(oldItem: UserPostResponse, newItem: UserPostResponse): Boolean = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: UserPostResponse, newItem: UserPostResponse): Boolean = oldItem == newItem
+private val diffCallBack = object: DiffUtil.ItemCallback<Photo>() {
+    override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean = oldItem == newItem
 }

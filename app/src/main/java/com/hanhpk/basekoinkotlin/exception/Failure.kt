@@ -1,12 +1,12 @@
 package com.hanhpk.basekoinkotlin.exception
 
 /**
- * エラー、failure, exceptionを管理する
+ * Manage errors, failures and exceptions
  */
 sealed class Failure: Throwable() {
     object NetworkConnection : Failure()
     object ServerError : Failure()
 
-    //追加エラー処理はこれをExtendして使う
+    //For additional error handling, extend this and use it
     abstract class FeatureFailure : Failure()
 }
